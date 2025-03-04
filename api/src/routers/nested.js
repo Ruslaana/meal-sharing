@@ -10,5 +10,5 @@ app.use(express.json());
 app.use("/api", apiRouter); 
 
 app.listen(PORT, () => {
-  console.log(`Сервер працює на http://localhost:${PORT}`);
+  console.log(`Server listening on port http://localhost:${process.env.PORT}`);
 });
