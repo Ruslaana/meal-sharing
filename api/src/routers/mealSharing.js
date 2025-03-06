@@ -38,7 +38,7 @@ mealSharingRouter.get("/first-meal", async (req, res) => {
   try {
     const meal = await knex.raw("SELECT * FROM Meal ORDER BY id ASC LIMIT 1");
     if (meal[0].length === 0) {
-      return res.status(404).json({ error: "Немає доступних страв" });
+      return res.status(404).json({ error: "There aren't available meals" });
     }
     res.json(meal[0][0]);
   } catch (error) {
