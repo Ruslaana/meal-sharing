@@ -9,7 +9,7 @@ mealSharingRouter.get("/future-meals", async (req, res) => {
     const meals = await knex.raw("SELECT * FROM Meal WHERE `when` > NOW()");
     res.json(meals[0]);
   } catch (error) {
-    res.status(500).json({ error: "Помилка отримання майбутніх страв" });
+    res.status(500).json({ error: "Error retrieving future meals" });
   }
 });
 
@@ -19,7 +19,7 @@ mealSharingRouter.get("/past-meals", async (req, res) => {
     const meals = await knex.raw("SELECT * FROM Meal WHERE `when` < NOW()");
     res.json(meals[0]);
   } catch (error) {
-    res.status(500).json({ error: "Помилка отримання минулих страв" });
+    res.status(500).json({ error: "Error retrieving past meals" });
   }
 });
 
@@ -29,7 +29,7 @@ mealSharingRouter.get("/all-meals", async (req, res) => {
     const meals = await knex.raw("SELECT * FROM Meal ORDER BY id");
     res.json(meals[0]);
   } catch (error) {
-    res.status(500).json({ error: "Помилка отримання всіх страв" });
+    res.status(500).json({ error: "Error retrieving all meals" });
   }
 });
 
@@ -42,7 +42,7 @@ mealSharingRouter.get("/first-meal", async (req, res) => {
     }
     res.json(meal[0][0]);
   } catch (error) {
-    res.status(500).json({ error: "Помилка отримання першої страви" });
+    res.status(500).json({ error: "Error retrieving the first meal" });
   }
 });
 
@@ -51,11 +51,11 @@ mealSharingRouter.get("/last-meal", async (req, res) => {
   try {
     const meal = await knex.raw("SELECT * FROM Meal ORDER BY id DESC LIMIT 1");
     if (meal[0].length === 0) {
-      return res.status(404).json({ error: "Немає доступних страв" });
+      return res.status(404).json({ error: "There aren't available meals" });
     }
     res.json(meal[0][0]);
   } catch (error) {
-    res.status(500).json({ error: "Помилка отримання останньої страви" });
+    res.status(500).json({ error: "Error retrieving the last meal" });
   }
 });
 
