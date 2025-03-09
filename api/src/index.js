@@ -1,15 +1,15 @@
+import "dotenv/config";
 import express from "express";
-import mealSharingRouter from "./routers/mealSharing.js"; 
-import nestedRouter from "./routers/nested.js";
+import cors from "cors";
+import bodyParser from "body-parser";
+import apiRouter from "./mealSharing.js"; 
 
-const apiRouter = express.Router();
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
 
-// Використовуємо маршрути
-apiRouter.use("/meals", mealSharingRouter); 
-apiRouter.use("/nested", nestedRouter); 
+app.use("/api", apiRouter);
 
-apiRouter.get("/", (req, res) => {
-  res.send("API головна сторінка");
+app.listen(process.env.PORT || 3001, () => {
+  console.log(`API listening on port ${process.env.PORT || 3001}`);
 });
-
-export default apiRouter;
