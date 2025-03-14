@@ -4,10 +4,52 @@ import knex from '../database_client.js';
 
 const mealsRouter = express.Router();
 
-// GET all meals
+// GET all meals with filtering, sorting, and limiting
 mealsRouter.get('/', async (req, res) => {
   try {
-    const meals = await knex('Meal').select('*');
+    let query = knex('Meal');
+
+    if (req.query.maxPrice) {
+      query = query.where('price', '<=', parseFloat(req.query.maxPrice));
+    }
+
+    if (req.query.availableReservations) {
+      const available = req.query.availableReservations === 'true';
+      query = query
+        .leftJoin('Reservation', 'Meal.id', 'Reservation.meal_id')
+        .groupBy('Meal.id')
+        .havingRaw(
+          available
+            ? 'Meal.max_reservations > COALESCE(SUM(Reservation.number_of_guests), 0)'
+            : 'Meal.max_reservations <= COALESCE(SUM(Reservation.number_of_guests), 0)',
+        );
+    }
+
+    if (req.query.title) {
+      query = query.where('title', 'like', `%${req.query.title}%`);
+    }
+
+    if (req.query.dateAfter) {
+      query = query.where('when', '>', req.query.dateAfter);
+    }
+
+    if (req.query.dateBefore) {
+      query = query.where('when', '<', req.query.dateBefore);
+    }
+
+    if (req.query.sortKey) {
+      const validKeys = ['when', 'max_reservations', 'price'];
+      if (validKeys.includes(req.query.sortKey)) {
+        const direction = req.query.sortDir === 'desc' ? 'desc' : 'asc';
+        query = query.orderBy(req.query.sortKey, direction);
+      }
+    }
+
+    if (req.query.limit) {
+      query = query.limit(parseInt(req.query.limit));
+    }
+
+    const meals = await query.select('Meal.*');
     res.json(meals);
   } catch (error) {
     res.status(500).json({ error: 'Error retrieving meals' });
