@@ -10,7 +10,7 @@ const MealsList = () => {
         const data = await response.json();
         setMeals(data);
       } catch (error) {
-        console.error('Помилка при отриманні страв:', error);
+        console.error('Error when receiving meals:', error);
       }
     };
 
