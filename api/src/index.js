@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import mealsRouter from './routers/meals.js';
-import reservationsRouter from './routers/reservation.js';
+import reservationsRouter from './routers/reservations.js';
 import reviewsRouter from './routers/reviews.js';
 
 const app = express();
