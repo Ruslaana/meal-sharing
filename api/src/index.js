@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use('/api/meals', mealsRouter);
 app.use('/api/reservations', reservationsRouter);
-app.use('/api/reviews', reviewsRouter); 
+app.use('/api/reviews', reviewsRouter);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`API listening on port ${process.env.PORT || 3001}`);

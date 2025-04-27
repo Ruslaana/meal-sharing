@@ -1,4 +1,4 @@
-import knex from "knex";
+import knex from 'knex';
 
 const connection = knex({
   client: process.env.DB_CLIENT,
@@ -9,7 +9,7 @@ const connection = knex({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE_NAME,
     ssl:
-      process.env.DB_USE_SSL === "true" ? { rejectUnauthorized: false } : false,
+      process.env.DB_USE_SSL === 'true' ? { rejectUnauthorized: false } : false,
   },
 });
 
