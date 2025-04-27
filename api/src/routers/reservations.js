@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import express from 'express';
 import knex from '../database_client.js';
 
@@ -10,7 +9,7 @@ reservationsRouter.get('/', async (req, res) => {
     const reservations = await knex('reservations').select('*');
     res.json(reservations);
   } catch (error) {
-    console.error('Error fetching reservations:', error);
+    console.error(error);
     res.status(500).json({ error: 'Error retrieving reservations' });
   }
 });
@@ -21,6 +20,7 @@ reservationsRouter.post('/', async (req, res) => {
     const [id] = await knex('reservations').insert(req.body);
     res.status(201).json({ id, message: 'Reservation added successfully' });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Error adding reservation' });
   }
 });
@@ -31,10 +31,12 @@ reservationsRouter.get('/:id', async (req, res) => {
     const reservation = await knex('reservations')
       .where({ id: req.params.id })
       .first();
-    if (!reservation)
+    if (!reservation) {
       return res.status(404).json({ error: 'Reservation not found' });
+    }
     res.json(reservation);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Error retrieving reservation' });
   }
 });
@@ -45,10 +47,12 @@ reservationsRouter.put('/:id', async (req, res) => {
     const updated = await knex('reservations')
       .where({ id: req.params.id })
       .update(req.body);
-    if (!updated)
+    if (!updated) {
       return res.status(404).json({ error: 'Reservation not found' });
+    }
     res.json({ message: 'Reservation updated successfully' });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Error updating reservation' });
   }
 });
@@ -56,15 +60,12 @@ reservationsRouter.put('/:id', async (req, res) => {
 // DELETE reservation by ID
 reservationsRouter.delete('/:id', async (req, res) => {
   try {
-    const deleted = await knex('reservations')
-      .where({ id: req.params.id })
-      .del();
-    if (!deleted)
-      return res.status(404).json({ error: 'Reservation not found' });
-    res.json({ message: 'Reservation deleted successfully' });
+    await knex('reservations').where({ id: req.params.id }).del();
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Error deleting reservation' });
   }
+  res.json({ message: 'Reservation deleted successfully' });
 });
 
 export default reservationsRouter;
