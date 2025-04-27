@@ -28,7 +28,7 @@ const MealsList = () => {
             <CardMedia
               component="img"
               height="200"
-              image={meal.image || '/images/default.jpg'}
+              image={meal.img_url || '/images/default.jpg'} // Оновлено img_url
               alt={meal.title}
             />
             <CardContent>
