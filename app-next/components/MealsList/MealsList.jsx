@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 
 const MealsList = () => {
@@ -6,8 +8,10 @@ const MealsList = () => {
   useEffect(() => {
     const fetchMeals = async () => {
       try {
-        const response = await fetch('/api/meals');
+        const response = await fetch('http://localhost:3001/api/meals');
         const data = await response.json();
+        console.log('Meals received:', data);
+
         setMeals(data);
       } catch (error) {
         console.error('Error when receiving meals:', error);
@@ -29,7 +33,7 @@ const MealsList = () => {
             <strong>{meal.title}</strong>
           </p>
           <p>{meal.description}</p>
-          <p>Price: {meal.price} грн</p>
+          <p>Price: {meal.price}$</p>
         </div>
       ))}
     </div>
