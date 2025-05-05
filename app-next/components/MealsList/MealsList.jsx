@@ -28,7 +28,10 @@ const MealsList = () => {
             <CardMedia
               component="img"
               height="200"
-              image={meal.img_url || '/images/default.jpg'} // Оновлено img_url
+              image={
+                meal.img_url ||
+                'https://placeholder.apptor.studio/200/200/product1.png'
+              }
               alt={meal.title}
             />
             <CardContent>
