@@ -36,7 +36,7 @@ const HomePage = () => {
               variant="h6"
               sx={{
                 color: '#ff8a80',
-                fontFamily: 'Pacifico, cursive',
+                fontFamily: 'Inter, sans-serif',
                 fontSize: '1.8rem',
               }}
             >
@@ -62,7 +62,7 @@ const HomePage = () => {
               color: '#f48fb1',
               textTransform: 'uppercase',
               letterSpacing: '1px',
-              fontFamily: 'Pacifico, cursive',
+              fontFamily: 'Inter, sans-serif',
             }}
           >
             Welcome to Meal Sharing App!
@@ -75,7 +75,7 @@ const HomePage = () => {
               variant="outlined"
               onClick={() => router.push('/meals')}
               sx={{
-                fontFamily: 'Pacifico, cursive',
+                fontFamily: 'Inter, sans-serif',
                 color: '#ff8a80',
                 borderColor: '#ff8a80',
                 '&:hover': {

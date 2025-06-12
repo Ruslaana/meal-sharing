@@ -42,7 +42,7 @@ const MealsList = ({ limit }) => {
             <CardContent>
               <Typography
                 variant="h6"
-                sx={{ fontFamily: 'Pacifico, cursive', color: '#ff8a80' }}
+                sx={{ fontFamily: 'Inter, sans-serif', color: '#ff8a80' }}
               >
                 {meal.title}
               </Typography>

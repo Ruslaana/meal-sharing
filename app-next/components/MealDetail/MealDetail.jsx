@@ -165,7 +165,7 @@ const MealDetail = ({ id }) => {
         sx={{
           alignSelf: 'flex-start',
           mb: 2,
-          fontFamily: 'Pacifico, cursive',
+          fontFamily: 'Inter, sans-serif',
           color: '#ff8a80',
           borderColor: '#ff8a80',
           '&:hover': { backgroundColor: '#ffebee', borderColor: '#ff5252' },
@@ -178,7 +178,7 @@ const MealDetail = ({ id }) => {
         <Typography
           variant="h4"
           sx={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Inter, sans-serif',
             mb: 2,
             textAlign: 'center',
             color: '#f48fb1',
@@ -213,7 +213,7 @@ const MealDetail = ({ id }) => {
             <Typography
               variant="h5"
               sx={{
-                fontFamily: 'Pacifico, cursive',
+                fontFamily: 'Inter, sans-serif',
                 color: '#f48fb1',
                 mt: 2,
                 mb: 2,
@@ -273,7 +273,7 @@ const MealDetail = ({ id }) => {
         <Typography
           variant="h5"
           sx={{
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Inter, sans-serif',
             color: '#f48fb1',
             mt: 6,
             mb: 2,
@@ -329,7 +329,7 @@ const MealDetail = ({ id }) => {
           sx={{
             mt: 6,
             mb: 1,
-            fontFamily: 'Pacifico, cursive',
+            fontFamily: 'Inter, sans-serif',
             color: '#f48fb1',
           }}
         >

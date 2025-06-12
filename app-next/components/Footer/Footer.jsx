@@ -17,7 +17,7 @@ const Footer = () => {
       <Typography
         variant="body2"
         sx={{
-          fontFamily: 'Pacifico, cursive',
+          fontFamily: 'Inter, sans-serif',
           color: '#f48fb1',
           mb: 1,
         }}

@@ -16,7 +16,7 @@ const MealsPage = () => {
         variant="outlined"
         sx={{
           mb: 3,
-          fontFamily: 'Pacifico, cursive',
+          fontFamily: 'Inter, sans-serif',
           color: '#ff8a80',
           borderColor: '#ff8a80',
           '&:hover': { backgroundColor: '#ffebee', borderColor: '#ff5252' },
@@ -28,7 +28,7 @@ const MealsPage = () => {
       <Typography
         variant="h4"
         sx={{
-          fontFamily: 'Pacifico, cursive',
+          fontFamily: 'Inter, sans-serif',
           mb: 4,
           textAlign: 'center',
           color: '#f48fb1',
