@@ -29,14 +29,24 @@ mealsRouter.post('/', async (req, res) => {
   }
 });
 
-// GET meal by ID
+// GET meal by ID (with available_reservations)
 mealsRouter.get('/:id', async (req, res) => {
   try {
     const meal = await knex('meals').where({ id: req.params.id }).first();
+
     if (!meal) {
       return res.status(404).json({ error: 'Meal not found' });
     }
-    res.json(meal);
+
+    const reservationCount = await knex('reservations')
+      .where({ meal_id: req.params.id })
+      .count('* as count')
+      .first();
+
+    const available =
+      meal.max_reservations - Number(reservationCount.count || 0);
+
+    res.json({ ...meal, available_reservations: available });
   } catch (error) {
     console.error('Error retrieving meals:', error);
     res.status(500).json({ error: 'Error retrieving meal' });
