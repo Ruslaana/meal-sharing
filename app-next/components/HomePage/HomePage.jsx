@@ -37,7 +37,7 @@ const HomePage = () => {
               sx={{
                 color: '#ff8a80',
                 fontFamily: 'Inter, sans-serif',
-                fontSize: '1.8rem',
+                fontSize: '1rem',
               }}
             >
               Meal Sharing App
