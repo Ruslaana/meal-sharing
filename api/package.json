@@ -9,8 +9,8 @@
     "npm": "^10.5.0"
   },
   "scripts": {
-    "dev": "nodemon api/src/index.js",
-    "start": "node api/src/index.js",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
     "format": "npx prettier . --write",
     "check": "npx eslint . --fix"
   },

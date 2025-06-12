@@ -1,5 +1,5 @@
-import TestPage from "@/components/TestPage/TestPage";
+import TestPage from '@/components/MealsList/MealsList';
 
-export default function NestedPage () {
-    return <TestPage />
+export default function NestedPage() {
+  return <TestPage />;
 }

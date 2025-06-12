@@ -7,9 +7,10 @@ const reviewsRouter = express.Router();
 // GET all review
 reviewsRouter.get('/', async (req, res) => {
   try {
-    const reviews = await knex('Review').select('*');
+    const reviews = await knex('reviews').select('*');
     res.json(reviews);
   } catch (error) {
+    console.error('Error fetching reviews:', error);
     res.status(500).json({ error: 'Error retrieving reviews' });
   }
 });
@@ -17,7 +18,9 @@ reviewsRouter.get('/', async (req, res) => {
 // GET review for specific meal
 reviewsRouter.get('/meal/:meal_id', async (req, res) => {
   try {
-    const reviews = await knex('Review').where({ meal_id: req.params.meal_id });
+    const reviews = await knex('reviews').where({
+      meal_id: req.params.meal_id,
+    });
     res.json(reviews);
   } catch (error) {
     res.status(500).json({ error: 'Error retrieving reviews' });
@@ -27,7 +30,7 @@ reviewsRouter.get('/meal/:meal_id', async (req, res) => {
 // POST new review
 reviewsRouter.post('/', async (req, res) => {
   try {
-    const [id] = await knex('Review').insert(req.body);
+    const [id] = await knex('reviews').insert(req.body);
     res.status(201).json({ id, message: 'Review added successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Error adding review' });
@@ -37,7 +40,7 @@ reviewsRouter.post('/', async (req, res) => {
 // GET review by id
 reviewsRouter.get('/:id', async (req, res) => {
   try {
-    const review = await knex('Review').where({ id: req.params.id }).first();
+    const review = await knex('reviews').where({ id: req.params.id }).first();
     if (!review) return res.status(404).json({ error: 'Review not found' });
     res.json(review);
   } catch (error) {
@@ -48,7 +51,7 @@ reviewsRouter.get('/:id', async (req, res) => {
 // PUT update review
 reviewsRouter.put('/:id', async (req, res) => {
   try {
-    const updated = await knex('Review')
+    const updated = await knex('reviews')
       .where({ id: req.params.id })
       .update(req.body);
     if (!updated) return res.status(404).json({ error: 'Review not found' });
@@ -61,7 +64,7 @@ reviewsRouter.put('/:id', async (req, res) => {
 // delete review
 reviewsRouter.delete('/:id', async (req, res) => {
   try {
-    const deleted = await knex('Review').where({ id: req.params.id }).del();
+    const deleted = await knex('reviews').where({ id: req.params.id }).del();
     if (!deleted) return res.status(404).json({ error: 'Review not found' });
     res.json({ message: 'Review deleted successfully' });
   } catch (error) {

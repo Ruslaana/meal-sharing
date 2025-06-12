@@ -1,19 +1,58 @@
-import HYFLogo from "@/assets/hyf.svg";
-import Image from "next/image";
-import "./HomePage.css";
+import React from 'react';
+import { AppBar, Box, Typography, Toolbar } from '@mui/material';
+import MealsList from '../MealsList/MealsList';
 
-// Feel free to replace the content of this component with your own
-function HomePage() {
+import { CssBaseline } from '@mui/material';
+
+const HomePage = () => {
   return (
-    <>
-      <a href="https://www.hackyourfuture.dk/" target="_blank" className="link">
-        <Image src={HYFLogo.src} width={HYFLogo.width} height={HYFLogo.height} className="logo" />
-      </a>
-      <a href="/nested" className="link">
-        <span className="message">Go to the nested page</span>
-      </a>
-    </>
+    <Box>
+      {/* Хедер */}
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: '#f1f1f1', boxShadow: 'none' }}
+      >
+        <Toolbar
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Typography
+            variant="h6"
+            sx={{ color: '#ff8a80', fontFamily: 'Pacifico, cursive' }}
+          >
+            Meals
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <Box
+        sx={{
+          padding: '20px',
+          textAlign: 'center',
+          backgroundColor: '#fff9e6',
+        }}
+      >
+        <Typography
+          variant="h4"
+          component="h1"
+          sx={{
+            marginBottom: '20px',
+            fontWeight: 'bold',
+            color: '#f48fb1',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            fontFamily: 'Pacifico, cursive',
+          }}
+        >
+          Welcome to Meal Sharing App!
+        </Typography>
+        <MealsList />
+      </Box>
+    </Box>
   );
-}
+};
 
 export default HomePage;
