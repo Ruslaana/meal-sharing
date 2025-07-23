@@ -1,57 +1,97 @@
-import React from 'react';
-import { AppBar, Box, Typography, Toolbar } from '@mui/material';
-import MealsList from '../MealsList/MealsList';
+'use client';
 
-import { CssBaseline } from '@mui/material';
+import React from 'react';
+import {
+  AppBar,
+  Box,
+  Typography,
+  Toolbar,
+  CssBaseline,
+  Button,
+} from '@mui/material';
+import MealsList from '../MealsList/MealsList';
+import Footer from '../Footer/Footer';
+import { useRouter } from 'next/navigation';
 
 const HomePage = () => {
+  const router = useRouter();
+
   return (
-    <Box>
-      {/* Хедер */}
-      <AppBar
-        position="static"
-        sx={{ backgroundColor: '#f1f1f1', boxShadow: 'none' }}
-      >
-        <Toolbar
+    <>
+      <CssBaseline />
+
+      <Box>
+        <AppBar
+          position="static"
+          sx={{ backgroundColor: '#f1f1f1', boxShadow: 'none' }}
+        >
+          <Toolbar
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                color: '#ff8a80',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '1rem',
+              }}
+            >
+              Meal Sharing App
+            </Typography>
+          </Toolbar>
+        </AppBar>
+
+        <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            padding: '20px',
+            textAlign: 'center',
+            backgroundColor: '#fff9e6',
+            minHeight: '80vh',
           }}
         >
           <Typography
-            variant="h6"
-            sx={{ color: '#ff8a80', fontFamily: 'Pacifico, cursive' }}
+            variant="h4"
+            component="h1"
+            sx={{
+              marginBottom: '20px',
+              fontWeight: 'bold',
+              color: '#f48fb1',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              fontFamily: 'Inter, sans-serif',
+            }}
           >
-            Meals
+            Welcome to Meal Sharing App!
           </Typography>
-        </Toolbar>
-      </AppBar>
 
-      <Box
-        sx={{
-          padding: '20px',
-          textAlign: 'center',
-          backgroundColor: '#fff9e6',
-        }}
-      >
-        <Typography
-          variant="h4"
-          component="h1"
-          sx={{
-            marginBottom: '20px',
-            fontWeight: 'bold',
-            color: '#f48fb1',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            fontFamily: 'Pacifico, cursive',
-          }}
-        >
-          Welcome to Meal Sharing App!
-        </Typography>
-        <MealsList />
+          <MealsList limit={8} />
+
+          <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+            <Button
+              variant="outlined"
+              onClick={() => router.push('/meals')}
+              sx={{
+                fontFamily: 'Inter, sans-serif',
+                color: '#ff8a80',
+                borderColor: '#ff8a80',
+                '&:hover': {
+                  backgroundColor: '#ffebee',
+                  borderColor: '#ff5252',
+                },
+              }}
+            >
+              See All Meals
+            </Button>
+          </Box>
+        </Box>
+
+        <Footer />
       </Box>
-    </Box>
+    </>
   );
 };
 
